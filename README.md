@@ -4,7 +4,7 @@ This repository includes my submission for the Tanda backend programming challen
 
 Before beginning with the implementation of my submission, I first had to setup a the Ruby on Rails environment on my laptop. I followed the instructions listed in [this tutorial](https://gorails.com/setup/windows/10).
 
-Below is the description of this task copied from their [repository]("https://github.com/TandaHQ/work-samples/tree/master/adnat (backend)).
+Below is the description of this task copied from their [repository]("https://github.com/TandaHQ/work-samples/tree/master/adnat\ \(backend\)).
 
 # Adnat (Ruby on Rails challenge) Description
 
