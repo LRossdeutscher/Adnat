@@ -2,7 +2,7 @@
 
 This repository includes my submission for the Tanda backend programming challenge as part of their application for a Full Stack Developer position.
 
-Below is the description of this task copied from their [repository](https://github.com/TandaHQ/work-samples/tree/master/adnat \(backend\)).
+Below is the description of this task copied from their [repository]("https://github.com/TandaHQ/work-samples/tree/master/adnat (backend)).
 
 # Adnat (Ruby on Rails challenge) Description
 
