@@ -1,4 +1,10 @@
-# Adnat (Ruby on Rails challenge)
+# Adnat (Ruby on Rails challenge) Submission
+
+This repository includes my submission for the Tanda backend programming challenge as part of their application for a Full Stack Developer position.
+
+Below is the description of this task copied from their [repository](https://github.com/TandaHQ/work-samples/tree/master/adnat \(backend\)).
+
+# Adnat (Ruby on Rails challenge) Description
 
 For this challenge you will be creating highly simplified version of the Tanda web app from scratch using [Ruby on Rails](https://rubyonrails.org/). This is a Ruby on Rails challenge, so you don't need to worry about design too much. You should use Git as you build your solution. For submission you are asked to push your repo to GitHub and provide us with the link and any necessary instructions.
 
