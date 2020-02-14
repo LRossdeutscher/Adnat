@@ -1,0 +1,12 @@
+<p>You aren't a member of any organisations. <br /> Join an existing one or create a new one.</p>
+
+<h2>Organisations</h2>
+
+<h2>Create organisation</h2>
+<%= form_tag '/organisations/create/join' do %>
+    <%= label_tag :"Name:"%>
+    <%= text_field_tag :name%><br />
+    <%= label_tag :"Hourly rate: $"%>
+    <%= text_field_tag :hourly_rate%><br />
+    <%= submit_tag "Create and Join" %>
+<%end%>
