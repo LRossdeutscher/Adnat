@@ -1,6 +1,12 @@
 <p>You aren't a member of any organisations. <br /> Join an existing one or create a new one.</p>
 
 <h2>Organisations</h2>
+<ol>
+    <% for organisation in Organisation.all %>
+        <li><%= organisation.name %></li>
+    <% end %>
+</ol>
+
 
 <h2>Create organisation</h2>
 <%= form_tag '/organisations/create/join' do %>

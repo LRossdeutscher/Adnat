@@ -7,11 +7,13 @@ class SessionsController < ApplicationController
   
     def create
         user = User.find_by(email_address: params[:email])
-        puts user.inspect
-  
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect_to '/welcome'
+            if user.organisation_id != nil
+                redirect_to '/welcome'
+            else
+                redirect_to '/overview'
+            end
         else
             flash.now.alert = "Invalid email or password"
             render "new"
@@ -29,6 +31,6 @@ class SessionsController < ApplicationController
     def welcome
     end
   
-    def page_requires_login
+    def overview
     end
 end
