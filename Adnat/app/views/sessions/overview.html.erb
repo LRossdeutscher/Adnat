@@ -1,0 +1,6 @@
+<% if current_user && current_user.organisation_id != nil%>
+    <% organisation = Organisation.find(current_user.organisation_id) %>
+    <h2> <% organisation.name %> </h2>
+<% end %>
+
+YEET

@@ -9,10 +9,22 @@
 
 
 <h2>Create organisation</h2>
-<%= form_tag '/organisations/create/join' do %>
-    <%= label_tag :"Name:"%>
-    <%= text_field_tag :name%><br />
-    <%= label_tag :"Hourly rate: $"%>
-    <%= text_field_tag :hourly_rate%><br />
-    <%= submit_tag "Create and Join" %>
+<%= form_for @organisation do |f| %>
+    <% if @organisation.errors.any? %>
+        <div class="error_messages">
+            <h2>Form is invalid</h2>
+            <ul>
+                <% for message in @organisation.errors.full_messages %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+        <%= f.label :"Name:" %>
+        <%= f.text_field :name %><br />
+        <%= f.label :"Hourly rate: $" %>
+        <%= f.text_field :hourly_rate%><br />
+    </p>
+    <p class="button"><%= f.submit "Create and Join" %></p>
 <%end%>

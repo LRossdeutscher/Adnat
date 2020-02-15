@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         user = User.find_by(email_address: params[:email])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            if user.organisation_id != nil
+            if user.organisation_id == nil
                 redirect_to '/welcome'
             else
                 redirect_to '/overview'
@@ -29,8 +29,10 @@ class SessionsController < ApplicationController
     end
   
     def welcome
+        # @organisation = Organisation.new
     end
   
     def overview
+        user = User.find(session[:user_id])
     end
 end
