@@ -22,17 +22,20 @@ class SessionsController < ApplicationController
   
     def destroy
         session[:user_id] = nil
-        redirect_to '/', :notice => "Logged out!"
+        redirect_to '/log_in', :notice => "Logged out!"
     end
   
     def login
     end
   
     def welcome
-        # @organisation = Organisation.new
+        @organisation = Organisation.new
+        # store the requesting url in the session hash for 
+        # when organisation is deleted
+        session[:return_to] ||= request.referer
     end
   
     def overview
-        user = User.find(session[:user_id])
+        @organisation = Organisation.find(current_user.organisation_id)
     end
 end

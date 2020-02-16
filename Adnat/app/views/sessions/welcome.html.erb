@@ -1,15 +1,19 @@
 <p>You aren't a member of any organisations. <br /> Join an existing one or create a new one.</p>
 
 <h2>Organisations</h2>
-<ol>
-    <% for organisation in Organisation.all %>
-        <li><%= organisation.name %></li>
+<ul>
+    <% for organisation in Organisation.order(:name).all %>
+        <li>
+            <%= organisation.name %>
+            <%= link_to "Edit", edit_organisation_path(:id => organisation.id) %>
+            <%= link_to "Join", user_path(:id => organisation.id), :method => :put %>
+        </li>
     <% end %>
-</ol>
+</ul>
 
 
 <h2>Create organisation</h2>
-<%= form_for @organisation do |f| %>
+<%= form_with model: @organisation do |f| %>
     <% if @organisation.errors.any? %>
         <div class="error_messages">
             <h2>Form is invalid</h2>

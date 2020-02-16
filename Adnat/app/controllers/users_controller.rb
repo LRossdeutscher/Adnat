@@ -19,4 +19,14 @@ class UsersController < ApplicationController
             render "new"
         end
     end
+
+    def update
+        User.update(current_user.id, organisation_id: params[:id])
+        redirect_to overview_path
+    end
+
+    def leave_organisation
+        User.update(current_user.id, organisation_id: nil)
+        redirect_to welcome_path
+    end
 end
