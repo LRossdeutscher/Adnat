@@ -19,7 +19,7 @@ class ShiftsController < ApplicationController
         #   WHERE users.id = shifts.user_id
         #
         # Going to use a rails hash data structure instead.
-        @shifts = Shift.includes(:user).where(users: {organisation_id: current_user.organisation_id})
+        @shifts = Shift.includes(:user).where(users: {organisation_id: current_user.organisation_id}).order(created_at: :desc)
         @names = {}
         @hours_worked = {}
         @shift_costs = {}
@@ -29,8 +29,8 @@ class ShiftsController < ApplicationController
             shift_length = (shift.finish - shift.start) / 60 / 60
             hours_worked = shift_length - Float(shift.break_length) / 60
             shift_cost = hours_worked * @organisation.hourly_rate
-            @hours_worked[shift] = hours_worked
-            @shift_costs[shift] = shift_cost
+            @hours_worked[shift] = hours_worked.round(2)
+            @shift_costs[shift] = shift_cost.round(2)
         end
     end
 
