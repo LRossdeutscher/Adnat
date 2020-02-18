@@ -7,10 +7,22 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 10px;
+      }
+      td {
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
-    <a href="#"><h1>Adnat</h1></a>
+    <a href="/"><h1>Adnat</h1></a>
     <div id="user_nav">
       <% if current_user %>
         Logged in as <%= current_user.name %>.

@@ -6,7 +6,6 @@ class OrganisationsController < ApplicationController
     def create
         organisation = Organisation.create(organisation_params)
         if organisation.save
-            puts ">>>>>>>>>>>>>>>>>>>>>> #{organisation}"
             User.update(current_user.id, organisation_id: organisation.id)
             redirect_to overview_path
         else
@@ -20,7 +19,11 @@ class OrganisationsController < ApplicationController
 
     def update
         Organisation.update(params[:id], organisation_params)
-        redirect_to overview_path
+        if current_user.organisation_id != nil
+            redirect_to overview_path
+        else
+            redirect_to welcome_path
+        end
     end
 
     def destroy

@@ -28,7 +28,7 @@
         <%= f.label :"Name:" %>
         <%= f.text_field :name %><br />
         <%= f.label :"Hourly rate: $" %>
-        <%= f.text_field :hourly_rate%><br />
+        <%= f.number_field :hourly_rate, step: :any%><br />
     </p>
     <p class="button"><%= f.submit "Create and Join" %></p>
 <%end%>

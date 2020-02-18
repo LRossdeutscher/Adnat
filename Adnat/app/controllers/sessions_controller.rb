@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
     skip_before_action :authorized, only: [:new, :create]
 
     def new
+        if session[:user_id]
+            redirect_to root_path
+        end
     end
   
     def create
@@ -24,18 +27,20 @@ class SessionsController < ApplicationController
         session[:user_id] = nil
         redirect_to '/log_in', :notice => "Logged out!"
     end
-  
-    def login
-    end
-  
+
     def welcome
-        @organisation = Organisation.new
-        # store the requesting url in the session hash for 
-        # when organisation is deleted
-        session[:return_to] ||= request.referer
+        if current_user.organisation_id == nil
+            @organisation = Organisation.new
+        else
+            redirect_to overview_path
+        end
     end
   
     def overview
-        @organisation = Organisation.find(current_user.organisation_id)
+        if current_user.organisation_id != nil
+            @organisation = Organisation.find(current_user.organisation_id)
+        else
+            redirect_to welcome_path
+        end
     end
 end

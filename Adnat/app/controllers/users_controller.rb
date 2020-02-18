@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     end
 
     def new
+        # new user instance for the form
         @user = User.new
     end
 

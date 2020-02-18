@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_15_102053) do
+ActiveRecord::Schema.define(version: 2020_02_17_031820) do
 
   create_table "organisations", force: :cascade do |t|
     t.string "name"
-    t.string "hourly_rate"
+    t.decimal "hourly_rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "shifts", force: :cascade do |t|
-    t.string "user_id"
-    t.string "start"
-    t.string "finish"
-    t.string "break_length"
+    t.integer "user_id"
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer "break_length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "organisation_id"
+    t.integer "organisation_id"
     t.string "name"
     t.string "email_address"
     t.string "password_digest"

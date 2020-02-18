@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'overview' => 'sessions#overview', :as => "overview"
     get 'leave' => 'users#leave_organisation', :as => "leave_organisation"
 
-    root :to => "sessions#login"
+    root :to => "sessions#overview"
 
     resources :users
     resources :sessions

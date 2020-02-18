@@ -1,0 +1,50 @@
+<h2> <%= @organisation.name %> </h2>
+
+<%= form_with model: @shift, scope: :shift do |f| %>
+    <% if @shift.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @shift.errors.full_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>Employee name</th>
+                <th>Shift date</th>
+                <th>Start time</th>
+                <th>Finish time</th>
+                <th>Break length (minutes)</th>
+                <th>Hours worked</th>
+                <th>Shift cost</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @shifts.each do |shift| %>
+            <tr>
+                <td style="text-align: left;"><%= @names[shift] %></td>
+                <td><%= shift.start.strftime("%d/%m/%Y") %></td>
+                <td><%= shift.start.strftime("%I:%M%p") %></td>
+                <td><%= shift.finish.strftime("%I:%M%p") %></td>
+                <td><%= shift.break_length %></td>
+                <td><%= @hours_worked[shift] %></td>
+                <td>$<%= @shift_costs[shift] %></td>
+            </tr>
+            <% end %>
+
+            <tr>
+                <td style="text-align: left;"><%= current_user.name %></td>
+                <td><%= f.date_field :date%></td>
+                <td><%= f.time_field :start%></td>
+                <td><%= f.time_field :finish%></td>
+                <td><%= f.number_field :break_length, :value => 0%></td>
+                <td colspan="2"><%= f.submit "Create Shift" %></td>
+            </tr>
+        </tbody>
+    </table>
+<% end %>
