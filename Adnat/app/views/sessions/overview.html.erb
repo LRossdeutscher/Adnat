@@ -13,4 +13,4 @@
 
 <%= link_to "View Shifts", shifts_path %>
 <%= link_to "Edit", edit_organisation_path(:id => @organisation.id) %>
-<%= link_to "Leave", leave_organisation_path %>
+<%= link_to "Leave", leave_organisation_path(:id => @organisation.id), :method => :put %>

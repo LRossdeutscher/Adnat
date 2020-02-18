@@ -1,4 +1,4 @@
-<p>You aren't a member of any organisations. <br /> Join an existing one or create a new one.</p>
+<p>You aren't a member of any organisations. Join an existing one or create a new one.</p>
 
 <h2>Organisations</h2>
 <ul>
@@ -6,7 +6,7 @@
         <li>
             <%= organisation.name %>
             <%= link_to "Edit", edit_organisation_path(:id => organisation.id) %>
-            <%= link_to "Join", user_path(:id => organisation.id), :method => :put %>
+            <%= link_to "Join", join_organisation_path(:id => organisation.id), :method => :put %>
         </li>
     <% end %>
 </ul>
