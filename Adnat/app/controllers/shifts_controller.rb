@@ -26,7 +26,7 @@ class ShiftsController < ApplicationController
 
         @shifts.each do |shift|
             @names[shift] = User.find(shift.user_id).name
-            shift_length = (shift.finish - shift.start) / 60 / 60
+            shift_length = calc_shift_length(shift.start, shift.finish)
             hours_worked = shift_length - Float(shift.break_length) / 60
             shift_cost = hours_worked * @organisation.hourly_rate
             @hours_worked[shift] = hours_worked.round(2)
@@ -41,6 +41,17 @@ class ShiftsController < ApplicationController
         shift = Shift.create(user_id: current_user.id, start: start_datetime, finish: finish_datetime, break_length: shift_params[:break_length])
         if shift.save
             redirect_to shifts_path
+        end
+    end
+
+private
+    def calc_shift_length(start, finish)
+        if start.before? finish
+            # day shift
+            (finish - start) / 60 / 60
+        else
+            # overnight shift
+            24 - ((start - finish) / 60 / 60)
         end
     end
 end
