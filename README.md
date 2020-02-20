@@ -4,7 +4,9 @@ This repository includes my submission for the Tanda backend programming challen
 
 Before beginning with the implementation of my submission, I first had to setup a the Ruby on Rails environment on my laptop. I followed the instructions listed in [this tutorial](https://gorails.com/setup/windows/10).
 
-## Brief Description pulled from spec
+Below is a brief description pulled from the task spec, and below that is a list of the optional exercises that I attempted and implemented and also the ones I did not. The ones I did not have a small discussion about how I may have implemented if I had longer time to work on this.
+
+## Brief Description
 
 For this challenge you will be creating highly simplified version of the Tanda web app from scratch using [Ruby on Rails](https://rubyonrails.org/). This is a Ruby on Rails challenge, so you don't need to worry about design too much. You should use Git as you build your solution. 
 
