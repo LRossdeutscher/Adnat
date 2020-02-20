@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     belongs_to :organisation, optional: true
-    has_many :shifts, dependent: :delete_all
+    has_many :shifts, dependent: :delete_all, inverse_of: :user
 
     has_secure_password
 
@@ -9,10 +9,6 @@ class User < ApplicationRecord
     validates_presence_of :email_address
     validates_uniqueness_of :email_address
     validates :password, length: { minimum: 6 }, :on => :create
-
-    # Set password requirements using AJAX
-    #PASSWORD_REQUIREMENTS = /\A
-    #(?=.{6,}) # Require at least 6 characters
-    #/x
-    #validates :password, format: PASSWORD_REQUIREMENTS
+    validates :email_address, format: { with: URI::MailTo::EMAIL_REGEXP }
+    validates :name, presence: true
 end

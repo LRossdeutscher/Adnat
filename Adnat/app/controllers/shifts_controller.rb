@@ -5,6 +5,61 @@ class ShiftsController < ApplicationController
 
     def index
         @shift = Shift.new
+        table_contents
+    end
+
+    def create
+        date = shift_params[:date]
+        start_datetime = combine_date_time(date, shift_params[:start])
+        finish_datetime = combine_date_time(date, shift_params[:finish])
+        @shift = Shift.create(user_id: current_user.id, start: start_datetime, finish: finish_datetime, break_length: shift_params[:break_length])
+        if @shift.save
+            redirect_to shifts_path
+        else
+            table_contents
+            render "index"
+        end
+    end
+
+    def edit
+        @shift = Shift.find(params[:id])
+    end
+
+    def update
+        date = shift_params[:date]
+        start_datetime = combine_date_time(date, shift_params[:start])
+        finish_datetime = combine_date_time(date, shift_params[:finish])
+        @shift = Shift.update(params[:id], start: start_datetime, finish: finish_datetime, break_length: shift_params[:break_length])
+        if @shift.errors.any?
+            render "edit"
+        else
+            redirect_to shifts_path
+        end
+    end
+
+    def destroy
+        Shift.destroy(params[:id])
+        redirect_to shifts_path
+    end
+
+private
+
+    def combine_date_time(date, time)
+        Time.zone.parse(date + " " + time)
+    end
+
+
+    def calc_shift_length(start, finish)
+        if start.before? finish
+            # day shift
+            (finish - start) / 60 / 60
+        else
+            # overnight shift
+            24 - ((start - finish) / 60 / 60)
+        end
+    end
+
+    def table_contents
         # set organisations instance variable for the html heading
         @organisation = Organisation.find(current_user.organisation_id)
         # I couldn't figure out how to get Rails to return me a query result
@@ -31,50 +86,6 @@ class ShiftsController < ApplicationController
             shift_cost = hours_worked * @organisation.hourly_rate
             @hours_worked[shift] = hours_worked.round(2)
             @shift_costs[shift] = shift_cost.round(2)
-        end
-    end
-
-    def create
-        date = shift_params[:date]
-        start_datetime = combine_date_time(date, shift_params[:start])
-        finish_datetime = combine_date_time(date, shift_params[:finish])
-        shift = Shift.create(user_id: current_user.id, start: start_datetime, finish: finish_datetime, break_length: shift_params[:break_length])
-        if shift.save
-            redirect_to shifts_path
-        end
-    end
-
-    def edit
-        @shift = Shift.find(params[:id])
-    end
-
-    def update
-        date = shift_params[:date]
-        start_datetime = combine_date_time(date, shift_params[:start])
-        finish_datetime = combine_date_time(date, shift_params[:finish])
-        Shift.update(params[:id], start: start_datetime, finish: finish_datetime, break_length: shift_params[:break_length])
-        redirect_to shifts_path
-    end
-
-    def destroy
-        Shift.destroy(params[:id])
-        redirect_to shifts_path
-    end
-
-private
-
-    def combine_date_time(date, time)
-        Time.zone.parse(date + " " + time)
-    end
-
-
-    def calc_shift_length(start, finish)
-        if start.before? finish
-            # day shift
-            (finish - start) / 60 / 60
-        else
-            # overnight shift
-            24 - ((start - finish) / 60 / 60)
         end
     end
 end

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to '/welcome', :notice => "Signed up!"
         else
+            @test = "BRUH"
             render "new"
         end
     end
@@ -26,11 +27,15 @@ class UsersController < ApplicationController
     end
 
     def update
-        User.update(current_user.id, user_params)
-        if current_user.organisation_id != nil
-            redirect_to overview_path
+        @user = User.update(current_user.id, user_params)
+        if @user.errors.any?
+            render "edit"
         else
-            redirect_to welcome_path
+            if current_user.organisation_id != nil
+                redirect_to overview_path
+            else
+                redirect_to welcome_path
+            end
         end
     end
 

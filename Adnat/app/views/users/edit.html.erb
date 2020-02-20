@@ -1,8 +1,8 @@
 <h2> Edit User </h2>
-<%= form_with model: @user do |f| %>
+<%= form_with model: @user, local: true do |f| %>
     <% if @user.errors.any? %>
         <div class="error_messages">
-            <h2>Form is invalid</h2>
+            <h3><font color="red">Form is invalid</font></h3>
             <ul>
                 <% for message in @user.errors.full_messages %>
                     <li><%= message %></li>
@@ -13,6 +13,8 @@
     <p>
         <%= f.label :"Name:" %>
         <%= f.text_field :name %><br />
+    </p>
+    <p>
         <%= f.label :"Email:" %>
         <%= f.text_field :email_address%><br />
     </p>
