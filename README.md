@@ -52,3 +52,5 @@ The schema would need to be changed to something that would reflect the behaviou
 
 #### 9. Unit tests
 Unit tests are a good idea. We don't mandate that you write any for this challenge, but feel free to go ahead and write some tests for your code.
+##### Potential Approach:
+I would follow [this tutorial](https://guides.rubyonrails.org/v3.2/testing.html) or similar. No Unit tests were written, contrary to good practice. 
