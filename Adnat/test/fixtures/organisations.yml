@@ -1,11 +1,14 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+bobs_burgers:
+  id: 1
+  name: "Bob's Burgers"
+  hourly_rate: 10
 
-one:
-  id: MyString
-  name: MyString
-  hourly_rate: MyString
+moes_tavern:
+  id: 2
+  name: "Moe's Tavern"
+  hourly_rate: 10
 
-two:
-  id: MyString
-  name: MyString
-  hourly_rate: MyString
+sallys_sandwiches:
+  id: 3
+  name: "Sally's Sandwiches"
+  hourly_rate: 10
