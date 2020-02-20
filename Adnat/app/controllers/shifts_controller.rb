@@ -43,20 +43,49 @@ class ShiftsController < ApplicationController
     end
 
 private
-
     def combine_date_time(date, time)
+        # combine a date and time in string format into a DateTime object
         Time.zone.parse(date + " " + time)
     end
 
-
     def calc_shift_length(start, finish)
+        # Considers overnight shifts
         if start.before? finish
-            # day shift
+            # same-day shift
             (finish - start) / 60 / 60
         else
             # overnight shift
-            24 - ((start - finish) / 60 / 60)
+            (finish.next_day() - start) / 60 / 60
         end
+    end
+
+    def calc_shift_cost(start, finish, hours, rate, break_hours)
+        sunday_hours = 0
+        normal_hours = 0
+        # Considers Sunday penalty rates
+        if start.before? finish
+            # same-day shift
+            if start.sunday? 
+                sunday_hours = hours
+            else 
+                normal_hours = hours
+            end
+        else
+            # overnight shift
+            actual_finish = finish.next_day() - (60*60*break_hours)
+            difference = 0
+            if start.sunday? && actual_finish.monday?
+                # shift starts sunday and finishes Monday
+                difference = (start.seconds_until_end_of_day + 1)/60/60
+            elsif start.saturday? && actual_finish.sunday?
+                # shift starts Saturday and finishes Sunday
+                difference = (actual_finish.seconds_since_midnight)/60/60
+            end
+            sunday_hours = difference
+            normal_hours = hours - difference
+        end
+        # return shift cost
+        return (normal_hours * rate) + (sunday_hours * rate * 2)
     end
 
     def table_contents
@@ -75,15 +104,17 @@ private
         #
         # Going to use a rails hash data structure instead.
         @shifts = Shift.includes(:user).where(users: {organisation_id: current_user.organisation_id}).order(created_at: :desc)
-        @names = {}
-        @hours_worked = {}
-        @shift_costs = {}
+
+        @names = {} # store the User's name of each shift
+        @hours_worked = {} # store the hours worked for each shift
+        @shift_costs = {} # store the shift cost for each shift
 
         @shifts.each do |shift|
             @names[shift] = User.find(shift.user_id).name
             shift_length = calc_shift_length(shift.start, shift.finish)
             hours_worked = shift_length - Float(shift.break_length) / 60
-            shift_cost = hours_worked * @organisation.hourly_rate
+            shift_cost = calc_shift_cost(shift.start, shift.finish, hours_worked, @organisation.hourly_rate, Float(shift.break_length)/60)
+            #shift_cost = hours_worked * @organisation.hourly_rate
             @hours_worked[shift] = hours_worked.round(2)
             @shift_costs[shift] = shift_cost.round(2)
         end

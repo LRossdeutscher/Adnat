@@ -34,11 +34,13 @@
                 <td><%= shift.break_length %></td>
                 <td><%= @hours_worked[shift] %></td>
                 <td>$<%= @shift_costs[shift] %></td>
-                <td>
-                    <%= link_to "Edit", edit_shift_path(:id => shift.id) %>
-                    </br>
-                    <%= link_to "Delete", shift_path(id: shift.id), :method => :delete, data: {confirm: "Are you sure?"} %>
-                </td>
+                <% if shift.user_id == current_user.id %>
+                    <td>
+                        <%= link_to "Edit", edit_shift_path(:id => shift.id) %>
+                        </br>
+                        <%= link_to "Delete", shift_path(id: shift.id), :method => :delete, data: {confirm: "Are you sure?"} %>
+                    </td>
+                <% end %>
             </tr>
             <% end %>
 
