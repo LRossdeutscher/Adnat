@@ -17,7 +17,6 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to '/welcome', :notice => "Signed up!"
         else
-            @test = "BRUH"
             render "new"
         end
     end

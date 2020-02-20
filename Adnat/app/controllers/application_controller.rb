@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
     end
 
     def authorized
-        redirect_to '/log_in', alert: "Need to be logged in!" if !logged_in?
+        redirect_to '/log_in' if !logged_in?
     end
 end
