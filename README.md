@@ -19,9 +19,6 @@ Allow users to modify or delete existing shifts.
 #### 3. Departed Employee Shift Storage (easy)
 Create a way for shifts of a departed employee to be stored. Create a link on the "View Shifts" route that would direct a user to a table of prior employees shifts. You may need to make schema changes for this exercise. Bonus: If a departed employee re-joins the organisation, have a way for their past shifts to be re-added to current shifts.
 
-#### 4. Filtering shifts (medium)
-Allow users to filter which shifts are visible based on employee or a date range or both.
-
 #### 5. Overnight shifts (medium)
 When creating a shift, if the finish time of a shift is earlier than the start time, the shift should be considered overnight. For example, if the start time is 7:30pm and the finish time is 1:30am, then it is an overnight shift that goes for 6 hours.
 
@@ -35,6 +32,9 @@ The hourly rate should be doubled for shifts worked on a Sunday. If you do exerc
 | 9pm Sunday | 1am Monday | 2 hours | $40 (4h at work – 2h break = 2h worked on Sunday) |
 
 ### Incomplete
+
+#### 4. Filtering shifts (medium)
+Allow users to filter which shifts are visible based on employee or a date range or both.
 
 #### 7. Multiple breaks (tricky)
 People often take more than one break when they work. For this exercise, instead of a shift having a single break length, it could have multiple. The sum of all these should be taken into account when calculating `hours worked` and `shift cost`.
