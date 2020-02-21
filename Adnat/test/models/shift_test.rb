@@ -13,7 +13,7 @@ class ShiftTest < ActiveSupport::TestCase
 
     test "invalid_shift_1" do
         shift = Shift.new
-        assert !shift.save, "Created a shift with nil attributes"
+        assert_not shift.save, "Created a shift with nil attributes"
     end
 
     test "invalid_shift_2" do

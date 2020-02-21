@@ -18,7 +18,7 @@ class OrganisationTest < ActiveSupport::TestCase
 
     test 'invalid_organisation_3' do
         organisation = Organisation.new
-        assert !organisation.save, "Created organisation with nil attributes"
+        assert_not organisation.save, "Created organisation with nil attributes"
     end
 
     test 'invalid_organisation_4' do

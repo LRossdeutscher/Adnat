@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
 
     test "invalid_user_1" do
         user = User.new
-        assert !user.save, "Created a user with nil attributes"
+        assert_not user.save, "Created a user with nil attributes"
     end
 
     test "invalid_user_2" do
