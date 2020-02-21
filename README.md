@@ -50,6 +50,8 @@ I then discovered that Rails comes with a number of rake tasks to help in testin
 | rake test:uncommitted |	Runs all the tests which are uncommitted. Supports Subversion and Git |
 | rake test:units |	Runs all the unit tests from test/unit |
 
+Nevertheless, my script is still useful for saving the outputs for the model, controller and integration tests seperately. 
+
 ##### Models:
 Basic blackbox test cases for each model listed in the schema. 
 1. A test for creating a valid record
