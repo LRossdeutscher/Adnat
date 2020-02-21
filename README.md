@@ -36,6 +36,17 @@ For unit tests, I followed the guidelines contained within [this tutorial](https
 ./run_all_tests.sh
 ```
 The script runs each test file in the models, controllers and integration directories and pipes their outputs to corresponding output files stored under the test_output/ directory (also in the test/ directory).
+I then discovered that Rails comes with a number of rake tasks to help in testing. The table below lists all rake tasks that come along in the default Rakefile when you initiate a Rails project.
+| Tasks | Description |
+| - | - |
+| rake test |	Runs all unit, functional and integration tests. You can also simply run rake as the test target is the default. |
+| rake test:benchmark |	Benchmark the performance tests |
+| rake test:functionals |	Runs all the functional tests from test/functional |
+| rake test:integration |	Runs all the integration tests from test/integration |
+| rake test:profile |	Profile the performance tests |
+| rake test:recent |	Tests recent changes |
+| rake test:uncommitted |	Runs all the tests which are uncommitted. Supports Subversion and Git |
+| rake test:units |	Runs all the unit tests from test/unit |
 
 ##### Models:
 Basic blackbox test cases for each model listed in the schema. 
