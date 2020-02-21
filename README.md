@@ -30,7 +30,25 @@ The hourly rate should is doubled for shifts worked on a Sunday. Overnight shift
 | 5pm Sunday | 2am Monday | 2 hours | $140 (9h at work – 2h break = 7h worked on Sunday) |
 | 9pm Sunday | 1am Monday | 2 hours | $40 (4h at work – 2h break = 2h worked on Sunday) |
 
-### Incomplete
+#### 9. Unit tests
+For unit tests, I followed the guidelines contained within [this tutorial](https://guides.rubyonrails.org/v3.2/testing.html). I've implemented some basic unit tests for the models, controllers and one integration test. These are briefly described in their sections below. To help with running all the tests at once, I also created a short bash script which can be found in the test/ directory, and run from within the test/ directory as follows.
+```bash
+./run_all_tests.sh
+```
+The script runs each test file in the models, controllers and integration directories and pipes their outputs to corresponding output files stored under the test_output/ directory (also in the test/ directory).
+
+##### Models:
+Basic blackbox test cases for each model listed in the schema. 
+1. A test for creating a valid record
+2. Validation tests for attributes
+
+##### Controllers:
+Both black and whitebox test cases are included. Tests views and basic routing. 
+
+##### Integration:
+Tests the typicall user flow as seen in the [demo video](https://www.youtube.com/watch?v=A8u8tBWoM4k) included at the bottom of the tassk spec.
+
+### Incomplete Exercises
 
 #### 3. Departed Employee Shift Storage (easy)
 Create a way for shifts of a departed employee to be stored. Create a link on the "View Shifts" route that would direct a user to a table of prior employees shifts. You may need to make schema changes for this exercise. Bonus: If a departed employee re-joins the organisation, have a way for their past shifts to be re-added to current shifts.
@@ -49,8 +67,3 @@ My idea (guess) for this is to include a nested form of some sort that asks the 
 Some people have 2+ jobs. Extend organisation functionality to allow users to belong to more than one organisation. You will need to rethink the shifts model. Shifts currently belong to a user (who belongs to a single organisation). If there are multiple organisations involved, this falls apart, because you don't know which organisation the user worked the shift at.
 ##### Potential Approach:
 The schema would need to be changed to something that would reflect the behaviour mentioned for the Departed Employee Shift storage exercise. By having this schema, the user can be a member of multiple organisations whilst having different shifts for each organisation.
-
-#### 9. Unit tests
-Unit tests are a good idea. We don't mandate that you write any for this challenge, but feel free to go ahead and write some tests for your code.
-##### Potential Approach:
-I would follow [this tutorial](https://guides.rubyonrails.org/v3.2/testing.html) or similar. No Unit tests were written, contrary to good practice. 
