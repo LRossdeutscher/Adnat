@@ -56,10 +56,10 @@ Basic blackbox test cases for each model listed in the schema.
 2. Validation tests for attributes
 
 ##### Controllers:
-Both black and whitebox test cases are included. Tests views and basic routing. 
+Both black and whitebox test cases are included. Tests views and basic routing. I couldn't, for the life of me, figure out how to test actions that require authentication. This comes from Ruby on Rails being new to me. I tried using stubs (which seem to only exist when using other testing gems) and I found out rails does not retain the session state after each get/post request. You'll see a lot of missing test cases and some failing.
 
 ##### Integration:
-Tests the typicall user flow as seen in the [demo video](https://www.youtube.com/watch?v=A8u8tBWoM4k) included at the bottom of the tassk spec.
+I planned to test the typical user flow as seen in the [demo video](https://www.youtube.com/watch?v=A8u8tBWoM4k) included at the bottom of the tassk spec. However due to not getting the log_in flow to work, and exhausting the possible solutions I found, I wasn't sure how to proceed.
 
 ### Incomplete Exercises
 
