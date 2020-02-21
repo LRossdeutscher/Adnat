@@ -1,9 +1,19 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
+    setup do
+        @user = users(:billy)
+    end
+
     test "should get login" do
         get '/log_in'
         assert_response :success
+    end
+
+    test "should login" do
+        post '/sessions', params: { email: @user.email_address, password: @user.password_digest }
+        assert_equal @user.id, session[:user_id]
+        assert_response :redirect, "Login failed"
     end
 
     test "should redirect logout" do

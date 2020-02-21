@@ -3,11 +3,11 @@ billy:
   organisation_id: nil
   name: Billy
   email_address: billy@gmail.com
-  password_digest: joelmusic
+  password_digest: <%= BCrypt::Password.create('joelmusic') %>
 
 joel:
   id: 2
   organisation_id: 1 # Bob's Burgers
   name: Joel
   email_address: joel@gmail.com
-  password_digest: billymusic
+  password_digest: <%= BCrypt::Password.create('billymusic') %>

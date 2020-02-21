@@ -9,7 +9,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
         get '/log_in'
         assert_response :success
 
-        post '/log_in', :email => users(:billy).email_address, :password => users(:billy).password
+        post '/sessions', params: { email: users(:billy).email_address, password: users(:billy).password_digest }
         follow_redirect!
         assert_equal '/welcome', path
     end
