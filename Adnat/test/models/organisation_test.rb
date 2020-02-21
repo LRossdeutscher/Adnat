@@ -1,4 +1,4 @@
-require '../test_helper'
+require 'test_helper'
 
 class OrganisationTest < ActiveSupport::TestCase
     test 'valid_organisation' do
