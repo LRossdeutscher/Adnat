@@ -31,7 +31,7 @@ The hourly rate should is doubled for shifts worked on a Sunday. Overnight shift
 | 9pm Sunday | 1am Monday | 2 hours | $40 (4h at work – 2h break = 2h worked on Sunday) |
 
 #### 9. Unit tests
-For unit tests, I followed the guidelines contained within [this tutorial](https://guides.rubyonrails.org/v3.2/testing.html). I've implemented some basic unit tests for the models, controllers and one integration test. These are briefly described in [their sections](https://github.com/LRossdeutscher/Adnat/blob/master/README.md#models) below. To help with running all the tests at once, I also created a short bash script which can be found in the test/ directory, and run from within the test/ directory as follows.
+For unit tests, I followed the guidelines contained within [this tutorial](https://guides.rubyonrails.org/v4.2/testing.html#the-test-environment). I've implemented some basic unit tests for the models, controllers and one integration test. These are briefly described in [their sections](https://github.com/LRossdeutscher/Adnat/blob/master/README.md#models) below. To help with running all the tests at once, I also created a short bash script which can be found in the test/ directory, and run from within the test/ directory as follows.
 ```bash
 ./run_all_tests.sh
 ```
