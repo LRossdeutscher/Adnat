@@ -10,6 +10,14 @@ Below is a brief description pulled from the task spec, and below that is a list
 
 For this challenge you will be creating highly simplified version of the Tanda web app from scratch using [Ruby on Rails](https://rubyonrails.org/). This is a Ruby on Rails challenge, so you don't need to worry about design too much. You should use Git as you build your solution. 
 
+## Basic Usage
+
+Change into the rails Application directory and start up the dev server on localhost:3000 :
+```
+cd Adnat
+rails s
+```
+
 ### Optional exercises completed
 
 #### 1. Users details (easy)
